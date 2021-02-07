@@ -13,6 +13,12 @@ public class UniqueIdUtil {
 
     public static String genId(){
         UUID uuid = UUID.randomUUID();
-        return uuid.toString().replace("\\-", "");
+        return uuid.toString().replaceAll("\\-","");
+    }
+
+    public static void main(String[] args) {
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid.toString());
+        System.out.println(uuid.toString().replaceAll("\\-",""));
     }
 }

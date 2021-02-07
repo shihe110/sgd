@@ -15,14 +15,14 @@ public class Generate {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\cache\\ant\\kjb");
+        gc.setOutputDir("D:\\cache\\ant\\sgd");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
         // .setKotlin(true) 是否生成 kotlin 代码
-        gc.setAuthor("zhangjinku");
+        gc.setAuthor("shihe");
 
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
         // gc.setMapperName("%sDao");
@@ -38,7 +38,7 @@ public class Generate {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://172.16.16.152:3306/knowledge_graph?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/sgd?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -46,7 +46,7 @@ public class Generate {
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
         //strategy.setTablePrefix(new String[] { "sys", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"sys_role_resource_relation"}); // 需要生成的表
+        strategy.setInclude(new String[]{"sgd_fund_etf"}); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         //strategy.setSuperEntityClass("NoticeEntity");
@@ -70,7 +70,7 @@ public class Generate {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.warmer.kgmaker");
+        pc.setParent("com.shihe");
         //pc.setModuleName("sinochem-user");
         mpg.setPackageInfo(pc);
 

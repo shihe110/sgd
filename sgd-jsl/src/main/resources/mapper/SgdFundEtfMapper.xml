@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdFundEtfMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdFundEtf">
+        <id column="id" property="id" />
+        <result column="fund_id" property="fundId" />
+        <result column="fund_nm" property="fundNm" />
+        <result column="index_id" property="indexId" />
+        <result column="fee" property="fee" />
+        <result column="m_fee" property="mFee" />
+
+        <result column="t_fee" property="tFee" />
+        <result column="creation_unit" property="creationUnit" />
+        <result column="issuer_nm" property="issuerNm" />
+        <result column="urls" property="urls" />
+        <result column="eval_flg" property="evalFlg" />
+
+        <result column="amount" property="amount" />
+        <result column="unit_total" property="unitTotal" />
+        <result column="unit_incr" property="unitIncr" />
+        <result column="price" property="price" />
+        <result column="volume" property="volume" />
+
+        <result column="last_dt" property="lastDt" />
+        <result column="last_time" property="lastTime" />
+        <result column="increase_rt" property="increaseRt" />
+        <result column="estimate_value" property="estimateValue" />
+        <result column="last_est_time" property="lastEstTime" />
+
+        <result column="discount_rt" property="discountRt" />
+        <result column="fund_nav" property="fundNav" />
+        <result column="nav_dt" property="navDt" />
+        <result column="index_nm" property="indexNm" />
+        <result column="index_increase_rt" property="indexIncreaseRt" />
+
+        <result column="pe" property="pe" />
+        <result column="pb" property="pb" />
+        <result column="idx_price_dt" property="idxPriceDt" />
+        <result column="owned" property="owned" />
+        <result column="holded" property="holded" />
+    </resultMap>
+
+    <sql id="columns">
+		ID,fund_id,fund_nm,index_id,fee,m_fee,t_fee,creation_unit,issuer_nm,urls,eval_flg,amount,unit_total,unit_incr,price,volume,last_dt,last_time,increase_rt,estimate_value,last_est_time,discount_rt,fund_nav,nav_dt,index_nm,index_increase_rt,pe,pb,idx_price_dt,owned,holded
+	</sql>
+
+    <insert id="add" parameterType="com.shihe.pojo.SgdFundEtf">
+        INSERT INTO sgd_fund_etf
+		(ID,fund_id,fund_nm,index_id,fee,m_fee,
+		t_fee,creation_unit,issuer_nm,urls,eval_flg,amount,unit_total,unit_incr,price,volume,last_dt,last_time,increase_rt,estimate_value,last_est_time,discount_rt,fund_nav,nav_dt,index_nm,index_increase_rt,pe,pb,idx_price_dt,owned,holded)
+		VALUES
+		(#{id}, #{fundId}, #{fundNm}, #{indexId}, #{fee}, #{mFee}, #{tFee}, #{creationUnit}, #{issuerNm}, #{urls}, #{evalFlg}, #{amount}, #{unitTotal}, #{unitIncr}, #{price}, #{volume},#{lastDt}, #{lastTime}, #{increaseRt}, #{estimateValue}, #{lastEstTime},#{discountRt}, #{fundNav}, #{navDt}, #{indexNm}, #{indexIncreaseRt},#{pe}, #{pb}, #{idxPriceDt}, #{owned}, #{holded})
+    </insert>
+
+</mapper>

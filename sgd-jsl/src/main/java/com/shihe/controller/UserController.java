@@ -26,4 +26,15 @@ public class UserController {
         List<User> users = userService.findAll();
         return users;
     }
+
+    @RequestMapping("/add")
+    public void add(){
+        User user = new User();
+        user.setId(3);
+        user.setName("wangwu");
+        user.setPass("123456");
+        System.out.println(user.toString());
+        userService.add(user);
+
+    }
 }
