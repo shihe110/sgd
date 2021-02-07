@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @ClassName ETFScheduleTask
- * @Description TODO
+ * @Description TODO etf每日数据定时任务
  * @Author shihe
  * @Date 2021-02-07 14:10
  * @Version 1.0
@@ -31,14 +31,14 @@ public class ETFScheduleTask {
      * 每日etf数据-定时器
      * @throws IOException
      */
-    @Scheduled(cron = "0 33 16 ? * MON-SUN")
+    @Scheduled(cron = "0 30 22 ? * MON-FRI")
     private void configureTasks() throws IOException {
         String url = "https://www.jisilu.cn/data/etf/etf_list/";
         String jsonstr = etfParser.getCall(url);
         JsonRootBean root = (JsonRootBean) etfParser.parseJsonToJavaBean(jsonstr, JsonRootBean.class);
         List<SgdFundEtf> sgdFundEtfs = etfParser.beanToSgdFundEtf(root);
         for (SgdFundEtf sgdFundEtf : sgdFundEtfs) {
-            System.out.println(sgdFundEtf.toString());
+//            System.out.println(sgdFundEtf.toString());
             iSgdFundEtfService.save(sgdFundEtf);
         }
     }
