@@ -3,6 +3,9 @@ package com.shihe.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shihe.pojo.SgdFundEtf;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,5 @@ import com.shihe.pojo.SgdFundEtf;
  */
 public interface SgdFundEtfMapper extends BaseMapper<SgdFundEtf> {
 
+    List<SgdFundEtf> orderByPeList(@Param("orderKey") String orderKey);
 }

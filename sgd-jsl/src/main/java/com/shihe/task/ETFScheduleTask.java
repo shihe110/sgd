@@ -31,7 +31,7 @@ public class ETFScheduleTask {
      * 每日etf数据-定时器
      * @throws IOException
      */
-    @Scheduled(cron = "0 30 22 ? * MON-FRI")
+    @Scheduled(cron = "0 20 21 ? * MON-FRI")
     private void configureTasks() throws IOException {
         String url = "https://www.jisilu.cn/data/etf/etf_list/";
         String jsonstr = etfParser.getCall(url);

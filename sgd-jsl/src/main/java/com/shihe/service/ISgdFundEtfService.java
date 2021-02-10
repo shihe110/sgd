@@ -3,6 +3,8 @@ package com.shihe.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shihe.pojo.SgdFundEtf;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.shihe.pojo.SgdFundEtf;
  */
 public interface ISgdFundEtfService extends IService<SgdFundEtf> {
 
+    List<SgdFundEtf> orderByPeList(String desc);
 }

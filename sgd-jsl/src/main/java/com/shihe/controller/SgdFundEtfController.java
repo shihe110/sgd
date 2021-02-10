@@ -1,6 +1,7 @@
 package com.shihe.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shihe.pojo.SgdFundEtf;
 import com.shihe.service.ISgdFundEtfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class SgdFundEtfController {
         List<SgdFundEtf> sgdFundEtfs = iSgdFundEtfService.list();
         return sgdFundEtfs;
     }
+    @RequestMapping("/pe")
+    @ResponseBody
+    public List<SgdFundEtf> orderByPe(String orderKey){
+        List<SgdFundEtf> sgdFundEtfs = iSgdFundEtfService.orderByPeList(orderKey);
+        return sgdFundEtfs;
+    }
+
 }
 
