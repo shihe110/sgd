@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdStockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdStock">
+        <id column="id" property="id" />
+        <result column="stock_code" property="stockCode" />
+        <result column="stock_name" property="stockName" />
+        <result column="website" property="website" />
+        <result column="money_flow" property="moneyFlow" />
+        <result column="money_flow_website" property="moneyFlowWebsite" />
+        <result column="stock_data" property="stockData" />
+        <result column="stock_data_website" property="stockDataWebsite" />
+        <result column="last_price" property="lastPrice" />
+        <result column="up_down_range" property="upDownRange" />
+        <result column="up_down_num" property="upDownNum" />
+        <result column="deal_amount" property="dealAmount" />
+        <result column="deal_money" property="dealMoney" />
+        <result column="amplitude" property="amplitude" />
+        <result column="top" property="top" />
+        <result column="low" property="low" />
+        <result column="today_price" property="todayPrice" />
+        <result column="yes_price" property="yesPrice" />
+        <result column="change_rt" property="changeRt" />
+        <result column="pe" property="pe" />
+        <result column="total_maket_value" property="totalMaketValue" />
+        <result column="import_date" property="importDate" />
+    </resultMap>
+
+</mapper>

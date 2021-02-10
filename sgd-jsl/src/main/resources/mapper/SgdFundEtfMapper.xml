@@ -53,5 +53,8 @@
 		VALUES
 		(#{id}, #{fundId}, #{fundNm}, #{indexId}, #{fee}, #{mFee}, #{tFee}, #{creationUnit}, #{issuerNm}, #{urls}, #{evalFlg}, #{amount}, #{unitTotal}, #{unitIncr}, #{price}, #{volume},#{lastDt}, #{lastTime}, #{increaseRt}, #{estimateValue}, #{lastEstTime},#{discountRt}, #{fundNav}, #{navDt}, #{indexNm}, #{indexIncreaseRt},#{pe}, #{pb}, #{idxPriceDt}, #{owned}, #{holded})
     </insert>
+    <select id="orderByPeList" resultMap="BaseResultMap">
+        select * from sgd_fund_etf order by cast(pe as SIGNED) ${orderKey};
+    </select>
 
 </mapper>

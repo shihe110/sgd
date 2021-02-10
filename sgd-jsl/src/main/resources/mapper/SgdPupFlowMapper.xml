@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdPupFlowMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdPupFlow">
+        <id column="id" property="id" />
+        <result column="city" property="city" />
+        <result column="statistical_year" property="statisticalYear" />
+        <result column="population_local" property="populationLocal" />
+        <result column="population_long_term" property="populationLongTerm" />
+        <result column="population_inflow_num" property="populationInflowNum" />
+        <result column="inflow_rt" property="inflowRt" />
+        <result column="economic_circle" property="economicCircle" />
+        <result column="province" property="province" />
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdStockRoeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdStockRoe">
+        <id column="id" property="id" />
+        <result column="s_code" property="sCode" />
+        <result column="s_name" property="sName" />
+        <result column="price" property="price" />
+        <result column="incre_range" property="increRange" />
+        <result column="deal" property="deal" />
+        <result column="m_price" property="mPrice" />
+        <result column="pe_ttm" property="peTtm" />
+        <result column="pe_temp" property="peTemp" />
+        <result column="pb" property="pb" />
+        <result column="pb_temp" property="pbTemp" />
+        <result column="stock_rt_five" property="stockRtFive" />
+        <result column="stock_rt" property="stockRt" />
+        <result column="stock_rt_static" property="stockRtStatic" />
+        <result column="up_lown_rt" property="upLownRt" />
+        <result column="roe_latest" property="roeLatest" />
+        <result column="roe_five" property="roeFive" />
+        <result column="in_five_rt" property="inFiveRt" />
+        <result column="Pro_five_rt" property="proFiveRt" />
+        <result column="money_five_rt" property="moneyFiveRt" />
+        <result column="a_five_rt" property="aFiveRt" />
+        <result column="Net_profit" property="netProfit" />
+        <result column="liabilities_rt" property="liabilitiesRt" />
+        <result column="pledge_rt" property="pledgeRt" />
+        <result column="industry" property="industry" />
+        <result column="industry_anther" property="industryAnther" />
+        <result column="tip_year" property="tipYear" />
+    </resultMap>
+
+</mapper>
