@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdStockAllMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdStockAll">
+        <id column="s_code" property="sCode" />
+        <result column="s_name" property="sName" />
+        <result column="s_market" property="sMarket" />
+        <result column="s_type" property="sType" />
+        <result column="s_date" property="sDate" />
+    </resultMap>
+
+</mapper>

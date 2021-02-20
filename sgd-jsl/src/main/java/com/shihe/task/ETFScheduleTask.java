@@ -3,7 +3,7 @@ package com.shihe.task;
 import com.shihe.pojo.JsonRootBean;
 import com.shihe.pojo.SgdFundEtf;
 import com.shihe.service.ISgdFundEtfService;
-import com.shihe.util.ETFParser;
+import com.shihe.util.InterfaceParserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ETFScheduleTask {
 
     @Autowired
-    private ETFParser etfParser;
+    private InterfaceParserUtil interfaceParserUtil;
 
     @Autowired
     private ISgdFundEtfService iSgdFundEtfService;
@@ -31,12 +31,12 @@ public class ETFScheduleTask {
      * 每日etf数据-定时器
      * @throws IOException
      */
-    @Scheduled(cron = "0 20 21 ? * MON-FRI")
+    @Scheduled(cron = "0 48 9 ? * MON-FRI")
     private void configureTasks() throws IOException {
         String url = "https://www.jisilu.cn/data/etf/etf_list/";
-        String jsonstr = etfParser.getCall(url);
-        JsonRootBean root = (JsonRootBean) etfParser.parseJsonToJavaBean(jsonstr, JsonRootBean.class);
-        List<SgdFundEtf> sgdFundEtfs = etfParser.beanToSgdFundEtf(root);
+        String jsonstr = interfaceParserUtil.getCall(url);
+        JsonRootBean root = (JsonRootBean) interfaceParserUtil.parseJsonToJavaBean(jsonstr, JsonRootBean.class);
+        List<SgdFundEtf> sgdFundEtfs = interfaceParserUtil.beanToSgdFundEtf(root);
         for (SgdFundEtf sgdFundEtf : sgdFundEtfs) {
 //            System.out.println(sgdFundEtf.toString());
             iSgdFundEtfService.save(sgdFundEtf);

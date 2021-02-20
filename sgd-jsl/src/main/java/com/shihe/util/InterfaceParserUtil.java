@@ -1,10 +1,7 @@
 package com.shihe.util;
 
 import com.alibaba.fastjson.JSON;
-import com.shihe.pojo.Cell;
-import com.shihe.pojo.JsonRootBean;
-import com.shihe.pojo.Rows;
-import com.shihe.pojo.SgdFundEtf;
+import com.shihe.pojo.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -24,7 +21,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Component
-public class ETFParser {
+public class InterfaceParserUtil {
 
     public static OkHttpClient client = new OkHttpClient();
 
@@ -106,5 +103,6 @@ public class ETFParser {
         }
         return targetList;
     }
+
 
 }

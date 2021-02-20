@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tb {
+            color: orangered;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tb">
+        <h1>Stock list</h1>
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>CODE</th>
+                <th>PRICE</th>
+                <th>PRICE-RISE</th>
+            </tr>
+            <tr th:each="stock : ${list}">
+                <td th:text="${stock.sName}"></td>
+                <td th:text="${stock.sCode}"></td>
+                <td th:text="${stock.price}"></td>
+                <td th:text="${stock.priceRise} + '%'"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

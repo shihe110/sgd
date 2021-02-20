@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdStockOfdataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdStockOfdata">
+        <id column="id" property="id" />
+        <result column="s_code" property="sCode" />
+        <result column="s_name" property="sName" />
+        <result column="price_jk" property="priceJk" />
+        <result column="price_zs" property="priceZs" />
+        <result column="price" property="price" />
+        <result column="price_top" property="priceTop" />
+        <result column="price_low" property="priceLow" />
+        <result column="deal_snum" property="dealSnum" />
+        <result column="deal_money" property="dealMoney" />
+        <result column="s_date" property="sDate" />
+        <result column="s_date" property="sDate" />
+        <result column="price_Rise" property="priceRise" />
+    </resultMap>
+
+    <select id="getStockOfMine" resultType="com.shihe.pojo.dto.StockOfMine">
+        select s_name sName, s_code sCode, round(price, 2) price, round(price_rise * 100, 2) priceRise from sgd_stock_ofdata
+    </select>
+
+</mapper>
