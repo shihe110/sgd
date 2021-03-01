@@ -1,5 +1,6 @@
 package com.shihe.task;
 
+import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shihe.pojo.*;
 import com.shihe.service.ISgdStockOfService;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName ETFScheduleTask
@@ -43,13 +45,17 @@ public class StockOfScheduleTask {
      *
      * @throws IOException
      */
-    @Scheduled(cron = "0 30 15 ? * MON-FRI")
+    @Scheduled(cron = "0 42 8 ? * MON-FRI")
     private void configureTasks() throws IOException, ParseException {
-        String stockOfMineStr = getStockOfMineStr();
-        String url = "http://hq.sinajs.cn/list=" + stockOfMineStr;
-        String callStr = interfaceParserUtil.getCall(url);
-        List<SgdStockOfdata> ofdatas = sinaToBean(callStr);
-        iSgdStockOfdataService.saveBatch(ofdatas);
+        List<String> userIds = getStockOfMineStr();
+        for (String userId : userIds) {
+            String stockOfUserStr = getByUserId(userId);
+            String url = "http://hq.sinajs.cn/list=" + stockOfUserStr;
+            String callStr = interfaceParserUtil.getCall(url);
+            List<SgdStockOfdata> ofdatas = sinaToBean(callStr);
+            iSgdStockOfdataService.saveBatch(ofdatas);
+
+        }
     }
 
     /**
@@ -97,10 +103,22 @@ public class StockOfScheduleTask {
      * 获取自选code str
      * @return
      */
-    private String getStockOfMineStr () {
+    private List<String> getStockOfMineStr () {
         QueryWrapper<SgdStockOf> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_id", "1");
-        List<SgdStockOf> list = iSgdStockOfService.list(wrapper);
+        wrapper.groupBy("user_id");
+        List<Map<String, Object>> maps = iSgdStockOfService.listMaps(wrapper);
+        List<String> userids = new ArrayList<>();
+        for (Map<String, Object> map : maps) {
+            String userId = (String) map.get("user_id");
+            userids.add(userId);
+        }
+        return userids;
+    }
+
+    private String getByUserId(String userId) {
+        QueryWrapper<SgdStockOf> w = new QueryWrapper<>();
+        w.eq("user_id",userId);
+        List<SgdStockOf> list = iSgdStockOfService.list(w);
         return listToStr(list);
     }
 
@@ -128,10 +146,12 @@ public class StockOfScheduleTask {
 
     public static void main(String[] args) throws IOException {
         StockOfScheduleTask stockOfScheduleTask = new StockOfScheduleTask();
-        String url = "http://hq.sinajs.cn/list=" + "sz300124,sh512170,";
+        List<String> stockOfMineStr = stockOfScheduleTask.getStockOfMineStr();
+       /* String url = "http://hq.sinajs.cn/list=" + "sz300124,sh512170,";
         InterfaceParserUtil interfaceParserUtil = new InterfaceParserUtil();
         String callStr = interfaceParserUtil.getCall(url);
         String[] split = callStr.split("\n");
-        System.out.println(callStr);
+        System.out.println(callStr);*/
+
     }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tb {
+            color: orangered;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tb">
+        <h1>Stock list</h1>
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>CODE</th>
+                <th>PRICE</th>
+                <th>market-value</th>
+            </tr>
+            <tr th:each="stock : ${stockList}">
+                <td th:text="${stock.stockName}"></td>
+                <td th:text="${stock.stockCode}"></td>
+                <td th:text="${stock.lastPrice}"></td>
+                <td th:text="${stock.totalMaketValue}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -23,4 +23,11 @@
         select s_name sName, s_code sCode, round(price, 2) price, round(price_rise * 100, 2) priceRise from sgd_stock_ofdata
     </select>
 
+    <select id="listOfMyStocks" resultType="com.shihe.pojo.SgdStockOfdata">
+        select * from sgd_stock_ofdata where s_code in
+        <foreach collection="codeList" item="code" index="index" open="(" close=")" separator=",">
+            #{code}
+        </foreach>
+    </select>
+
 </mapper>

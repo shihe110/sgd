@@ -3,14 +3,19 @@ package com.shihe.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shihe.pojo.SgdStockOf;
+import com.shihe.pojo.SgdStockOfdata;
 import com.shihe.service.ISgdStockOfService;
+import com.shihe.service.ISgdStockOfdataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -27,13 +32,33 @@ public class SgdStockOfController {
     @Autowired
     private ISgdStockOfService iSgdStockOfService;
 
+    @Autowired
+    private ISgdStockOfdataService iSgdStockOfdataService;
+
     @ResponseBody
     @RequestMapping("/index")
-    public List<SgdStockOf> index(){
+    public List<SgdStockOfdata> index(){
         QueryWrapper<SgdStockOf> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id", "1");
         List<SgdStockOf> list = iSgdStockOfService.list(wrapper);
-        return list;
+
+        List<String> codes = getListOfMineCode(list);
+        List<SgdStockOfdata> ss = iSgdStockOfdataService.listOfMyStocks(codes);
+        return ss;
+    }
+
+    private List<String> getListOfMineCode(List<SgdStockOf> list) {
+        ArrayList<String> codes = new ArrayList<>();
+        for (SgdStockOf sgdStockOf : list) {
+            codes.add(sgdStockOf.getsCode());
+        }
+        return codes;
+    }
+
+    public static void main(String[] args) {
+        double a = 188.28d;
+        double rate = 0.7;
+        System.out.println(a * rate);
     }
 
 }

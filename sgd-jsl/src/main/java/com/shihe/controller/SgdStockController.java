@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -28,11 +29,12 @@ public class SgdStockController {
     @Autowired
     private ISgdStockService iSgdStockService;
 
-    @RequestMapping("/")
-    @ResponseBody
-    public List<SgdStock> stockList(){
-        IPage<SgdStock> page = iSgdStockService.page(new Page<>(1, 20));
-        return page.getRecords();
+    @RequestMapping("/stockList")
+    public ModelAndView stockList(){
+        IPage<SgdStock> page = iSgdStockService.page(new Page<>(1, 100));
+        ModelAndView mv = new ModelAndView("stockList");
+        mv.addObject("stockList",page.getRecords());
+        return mv;
     }
 
 

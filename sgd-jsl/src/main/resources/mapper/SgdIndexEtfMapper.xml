@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shihe.mapper.SgdIndexEtfMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.shihe.pojo.SgdIndexEtf">
+        <id column="id" property="id" />
+        <result column="s_code" property="sCode" />
+        <result column="s_name" property="sName" />
+        <result column="price" property="price" />
+        <result column="industry" property="industry" />
+        <result column="area" property="area" />
+        <result column="weight" property="weight" />
+        <result column="per_sy" property="perSy" />
+        <result column="per_jzc" property="perJzc" />
+        <result column="roe" property="roe" />
+        <result column="total_amount" property="totalAmount" />
+        <result column="total_exe" property="totalExe" />
+        <result column="ex_price" property="exPrice" />
+        <result column="index_type" property="indexType" />
+    </resultMap>
+
+</mapper>

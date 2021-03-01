@@ -77,12 +77,12 @@ public class SgdStock extends Model<SgdStock> {
     /**
      * 成交量-万手
      */
-    private Double dealAmount;
+    private String dealAmount;
 
     /**
      * 成交额-亿
      */
-    private Double dealMoney;
+    private String dealMoney;
 
     /**
      * 振幅
@@ -122,7 +122,7 @@ public class SgdStock extends Model<SgdStock> {
     /**
      * 总市值
      */
-    private Double totalMaketValue;
+    private String totalMaketValue;
 
     /**
      * 日期
@@ -218,19 +218,19 @@ public class SgdStock extends Model<SgdStock> {
         this.upDownNum = upDownNum;
     }
 
-    public Double getDealAmount() {
+    public String getDealAmount() {
         return dealAmount;
     }
 
-    public void setDealAmount(Double dealAmount) {
+    public void setDealAmount(String dealAmount) {
         this.dealAmount = dealAmount;
     }
 
-    public Double getDealMoney() {
+    public String getDealMoney() {
         return dealMoney;
     }
 
-    public void setDealMoney(Double dealMoney) {
+    public void setDealMoney(String dealMoney) {
         this.dealMoney = dealMoney;
     }
 
@@ -290,11 +290,11 @@ public class SgdStock extends Model<SgdStock> {
         this.pe = pe;
     }
 
-    public Double getTotalMaketValue() {
+    public String getTotalMaketValue() {
         return totalMaketValue;
     }
 
-    public void setTotalMaketValue(Double totalMaketValue) {
+    public void setTotalMaketValue(String totalMaketValue) {
         this.totalMaketValue = totalMaketValue;
     }
 

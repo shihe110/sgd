@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -25,6 +26,12 @@ public class SgdStockOfdataServiceImpl extends ServiceImpl<SgdStockOfdataMapper,
     @Override
     public List<SgdStockOfdata> getStocksOfMine() {
         List<SgdStockOfdata> list = sgdStockOfdataMapper.getStockOfMine();
+        return list;
+    }
+
+    @Override
+    public List<SgdStockOfdata> listOfMyStocks(List<String> cs) {
+        List<SgdStockOfdata> list = sgdStockOfdataMapper.listOfMyStocks(cs);
         return list;
     }
 }
