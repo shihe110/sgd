@@ -1,10 +1,8 @@
 package com.shihe.task;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.shihe.pojo.SgdStock;
 import com.shihe.pojo.SgdStockHistory;
 import com.shihe.pojo.SgdStockOf;
-import com.shihe.pojo.SgdStockOfdata;
 import com.shihe.service.ISgdStockHistoryService;
 import com.shihe.service.ISgdStockOfService;
 import com.shihe.util.UniqueIdUtil;
@@ -17,24 +15,22 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @ClassName StockStoryScheduleTask
+ * @ClassName StockPEGScheduleTask
  * @Description TODO
  * @Author admin
  * @Date 2021-02-24 8:55
  * @Version 1.0
  */
 @Component
-public class StockStoryScheduleTask {
+public class StockPEGScheduleTask {
 
     @Autowired
     private ISgdStockOfService iSgdStockOfService;
@@ -52,19 +48,8 @@ public class StockStoryScheduleTask {
         wrapper.ne("s_market","-");
         List<SgdStockOf> list = iSgdStockOfService.list(wrapper);
         for (SgdStockOf stockOf : list) {
-            String url = "http://www.aigaogao.com/tools/history.html?s="+stockOf.getsCode();
-            Document doc = Jsoup.parse(new URL(url), 30000);
-            Elements elementsByTag = doc.getElementById("ctl16_contentdiv").getElementsByTag("tr");
-            ArrayList<SgdStockHistory> his = new ArrayList<>();
-            for (int i = 1; i < elementsByTag.size(); i++) {
-                Element element = elementsByTag.get(i);
-                Elements children = element.children();
-                SgdStockHistory stock = elementToBean(children, stockOf);
-                if (stock != null){
-                    his.add(stock);
-                }
-            }
-            iSgdStockHistoryService.saveBatch(his);
+            String code = stockOf.getsCode();
+            String peg = getPEG(code);
         }
     }
 
@@ -100,28 +85,57 @@ public class StockStoryScheduleTask {
         return stockHistory;
     }
 
-    public static void main(String[] args) throws IOException {
-        String url = "http://www.aigaogao.com/tools/history.html?s=600276";
+    public String getPEG(String code) throws IOException {
+        String url = "https://www.jisilu.cn/data/stock/" + code;
         Document doc = Jsoup.parse(new URL(url), 30000);
-        Elements elementsByTag = doc.getElementById("ctl16_contentdiv").getElementsByTag("tr");
-        for (int i = 1; i < elementsByTag.size(); i++) {
-            Element element = elementsByTag.get(i);
-            Elements children = element.children();
-            String text1 = children.get(0).text();
-            System.out.println(text1);
-            for (Element child : children) {
-                String text = child.text();
-                if (text == null || text.equals("")){
-                    text = "0";
-                }
-                System.out.println(text);
-            }
-        }
+        Elements elementsByTag = doc.getElementById("stock_detail").getElementsByTag("tbody");
+        Elements tr = elementsByTag.select("tr").last().children();
+        // 5年增长率
+        String rt = tr.get(3).children().text();
+        rt = rt.substring(0, rt.length() - 1);
+
+        Elements item_sub = doc.getElementsByClass("item_row");
+        Elements children = item_sub.get(0).children();
+        Element element = children.get(0).children().get(0);
+        Elements div = element.getElementsByTag("div");
+        // 当前pe
+        String pe = div.get(2).select("span").text();
+        System.out.println(pe);
+        String text = div.get(5).text();
+        // 平均pe
+        String avg = text.substring(4, text.length() - 1).trim();
+        // peg pe/(rt*100)
+        double peg = Double.valueOf(pe) / Double.valueOf(rt);
+        return String.valueOf(peg);
     }
 
-    public String zuheResult(){
+    public static void main(String[] args) throws IOException {
+        String url = "https://www.jisilu.cn/data/stock/000001";
+        Document doc = Jsoup.parse(new URL(url), 30000);
+        Elements elementsByTag = doc.getElementById("stock_detail").getElementsByTag("tbody");
+//        System.out.println(elementsByTag.html());
+        Elements tr = elementsByTag.select("tr").last().children();
+        // 5年增长率
+        String rt = tr.get(3).children().text();
+        rt = rt.substring(0, rt.length() - 1);
 
 
-        return "hello";
+        Elements item_sub = doc.getElementsByClass("item_row");
+        Elements children = item_sub.get(0).children();
+        Element element = children.get(0).children().get(0);
+        Elements div = element.getElementsByTag("div");
+        // 当前pe
+        String pe = div.get(2).select("span").text();
+        System.out.println(pe);
+
+        String text = div.get(5).text();
+        // 平均pe
+        String avg = text.substring(4, text.length() - 1).trim();
+
+        // peg pe/(rt*100)
+        double peg = Double.valueOf(pe) / Double.valueOf(rt);
+        System.out.println(peg);
     }
+
+
 }

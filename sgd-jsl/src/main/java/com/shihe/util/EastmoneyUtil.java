@@ -27,5 +27,13 @@ public class EastmoneyUtil {
         for (Element el : elements) {
             System.out.println(el.html());
         }
+        /*String url = "https://www.jisilu.cn/data/stock/300326";
+        Document doc = Jsoup.parse(new URL(url), 30000);
+        System.out.println(doc.html());
+        Element element = doc.getElementById("stock_detail");
+        Elements elements = element.getElementsByTag("td");
+        for (Element el : elements) {
+            System.out.println(el.html());
+        }*/
     }
 }
