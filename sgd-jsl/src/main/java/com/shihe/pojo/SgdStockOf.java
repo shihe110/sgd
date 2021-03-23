@@ -42,6 +42,19 @@ public class SgdStockOf extends Model<SgdStockOf> {
      */
     private String sMarket;
 
+    /**
+     * 股票代码
+     */
+    private String sName;
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
     public String getsMarket() {
         return sMarket;
     }

@@ -2,6 +2,9 @@ package com.shihe.service;
 
 import com.shihe.pojo.SgdStockOf;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.shihe.pojo.dto.StockPEG;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISgdStockOfService extends IService<SgdStockOf> {
 
+    StockPEG getPeg(SgdStockOf code) throws IOException;
 }
