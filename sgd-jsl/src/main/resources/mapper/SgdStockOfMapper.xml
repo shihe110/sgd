@@ -9,6 +9,7 @@
         <result column="s_code" property="sCode" />
         <result column="s_date" property="sDate" />
         <result column="s_market" property="sMarket" />
+        <result column="s_name" property="sName" />
     </resultMap>
 
 </mapper>
